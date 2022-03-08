@@ -8,22 +8,21 @@ import java.util.zip.ZipOutputStream;
 public class GameProgress implements Serializable {
 
     public static void main(String[] args) {
-        savaGames(gameProgress1, gameProgress2, gameProgress3);
-        createZipArchive();
-        deleteFile();
-        openZip();
-        openProgress();
+            savaGames(gameProgress1, gameProgress2, gameProgress3);
+            createZipArchive();
+            deleteFile();
+            openZip();
+            openProgress();
     }
 
     private static final long serialVersionUID = 1L;
-    private static final String pathForSaveFile1 = "C:\\Games\\savegames\\save1.txt";
-    private static final String pathForSaveFile2 = "c:\\games\\savegames\\save2.txt";
-    private static final String pathForSaveFile3 = "C:\\Games\\savegames\\save3.txt";
-    private static final String pathForZip = "C:\\Games\\savegames\\savegame.zip";
-    private static final String pathForOpenZip = "C:\\Games\\savegames\\save1.txt";
-    private static final String pathForOpenZip2 = "C:\\Games\\savegames\\save2.txt";
-    private static final String pathForOpenZip3 = "C:\\Games\\savegames\\save3.txt";
-
+    private static final String pathForSaveFile1 = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save1.txt";
+    private static final String pathForSaveFile2 = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save2.txt";
+    private static final String pathForSaveFile3 = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save3.txt";
+    private static final String pathForZip = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "savegame.zip";
+    private static final String pathForOpenZip = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save1.txt";
+    private static final String pathForOpenZip2 = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save2.txt";
+    private static final String pathForOpenZip3 = "C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save3.txt";
 
     private int health;
     private int weapons;
@@ -68,21 +67,15 @@ public class GameProgress implements Serializable {
     public static void createZipArchive() {
         try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(pathForZip)); FileInputStream fis = new FileInputStream(pathForSaveFile1);
              FileInputStream fis2 = new FileInputStream(pathForSaveFile2); FileInputStream fis3 = new FileInputStream(pathForSaveFile3)) {
-            ZipEntry entry = new ZipEntry("save1.txt");
-            ZipEntry entry2 = new ZipEntry("save2.txt");
-            ZipEntry entry3 = new ZipEntry("save3.txt");
-            zout.putNextEntry(entry);
-            zout.putNextEntry(entry2);
-            zout.putNextEntry(entry3);
-            System.out.println("Зип архив c файлом " + entry.getName() + " создан");
-            System.out.println("Зип архив c файлом " + entry2.getName() + " создан");
-            System.out.println("Зип архив c файлом " + entry3.getName() + " создан");
+            zout.putNextEntry(new ZipEntry("save.txt"));
             byte[] buffer = new byte[fis.available()];
             fis.read(buffer);
             zout.write(buffer);
+            zout.putNextEntry(new ZipEntry("save2.txt"));
             byte[] buffer2 = new byte[fis2.available()];
             fis2.read(buffer2);
             zout.write(buffer2);
+            zout.putNextEntry(new ZipEntry("save3.txt"));
             byte[] buffer3 = new byte[fis3.available()];
             fis3.read(buffer3);
             zout.write(buffer3);
@@ -93,9 +86,9 @@ public class GameProgress implements Serializable {
     }
 
     public static void deleteFile() {
-        final File pathForSaveFile1 = new File ("C:\\Games\\savegames\\save1.txt");
-        final File pathForSaveFile2 = new File("C:\\Games\\savegames\\save2.txt");
-        final File pathForSaveFile3 = new File ("C:\\Games\\savegames\\save3.txt");
+        final File pathForSaveFile1 = new File ("C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save1.txt");
+        final File pathForSaveFile2 = new File("C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save2.txt");
+        final File pathForSaveFile3 = new File ("C:" + File.separator + "Games" + File.separator + "savegames" + File.separator + "save3.txt");
         pathForSaveFile1.delete();
         System.out.println("Файл " + pathForSaveFile1.getName() + " удален");
         pathForSaveFile2.delete();

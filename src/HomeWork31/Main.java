@@ -4,71 +4,133 @@ import java.io.*;
 
 public class Main {
 
-    static StringBuilder sbForDirectoriesAndFiles = new StringBuilder();
+    private static String path1 = "C:" + File.separator + "Games" + File.separator;
+    private static String path2 = "C:" + File.separator + "Games" + File.separator + "src" + File.separator;
+    private static String path3 = "C:" + File.separator + "Games" + File.separator + "res" + File.separator;
+    private static String path4 = "C:" + File.separator + "Games" + File.separator + "src" + File.separator + "main" + File.separator;
+    private static StringBuilder sbForDirectoriesAndFiles = new StringBuilder();
     static String separator = System.lineSeparator();
 
     public static void main(String[] args) {
+        createSrcDirectory("src");
+        createResDirectory("res");
+        createSavegamesDirectory("savegames");
+        createTempDirectory("temp");
+        createMainDirectory("main");
+        createTestDirectory("test");
+        createDrawablesDirectory("drawables");
+        createVectorsDirectory("vectors");
+        createIconsDirectory("icons");
+        createMainFile("Main.java");
+        createUtilsFile("Utils.java");
+        createTextFile("text.txt");
+        writeInfoInFile();
+    }
+
+    private static void createSrcDirectory(String nameDir) {
+        File src = new File(path1 + nameDir);
+        if (src.mkdir()) {
+            sbForDirectoriesAndFiles.append("Каталог " + src.getName() + " был создан");
+        }
+    }
+
+    private static void createResDirectory(String nameDir) {
+        File res = new File(path1 + nameDir);
+        if (res.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + res.getName() + " был создан");
+        }
+    }
+
+    private static void createSavegamesDirectory(String nameDir) {
+        File savegames = new File(path1 + nameDir);
+        if (savegames.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + savegames.getName() + " был создан");
+        }
+    }
+
+    private static void createTempDirectory(String nameDir) {
+        File temp = new File(path1 + nameDir);
+        if (temp.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + temp.getName() + " был создан");
+        }
+    }
+
+    private static void createMainDirectory(String nameDir) {
+        File main = new File(path2 + nameDir);
+        if (main.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + main.getName() + " был создан");
+        }
+    }
+
+    private static void createTestDirectory(String nameDir) {
+        File test = new File(path2 + nameDir);
+        if (test.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + test.getName() + " был создан");
+        }
+    }
+
+    private static void createDrawablesDirectory(String nameDir) {
+        File drawables = new File(path3 + nameDir);
+        if (drawables.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + drawables.getName() + " был создан");
+        }
+    }
+
+    private static void createVectorsDirectory(String nameDir) {
+        File vectors = new File(path3 + nameDir);
+        if (vectors.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + vectors.getName() + " был создан");
+        }
+    }
+
+    private static void createIconsDirectory(String nameDir) {
+        File icons = new File(path3 + nameDir);
+        if (icons.mkdir()) {
+            sbForDirectoriesAndFiles.append(separator).append("Каталог " + icons.getName() + " был создан");
+        }
+    }
+
+    private static void createMainFile(String nameFile) {
+        File mainJava = new File(path4 + nameFile);
         try {
-            createSomeDirectories();
+            if (mainJava.createNewFile()) {
+                sbForDirectoriesAndFiles.append(separator).append("Файл " + mainJava.getName() + " был создан");
+            }
         } catch (IOException ex) {
             ex.getMessage();
         }
     }
 
-    public static void createSomeDirectories() throws IOException {
-        File src = new File("C:\\Games\\src");
-        File res = new File("C:\\Games\\res");
-        File savegames = new File("C:\\Games\\savegames");
-        File temp = new File("C:\\Games\\temp");
-        File srcMain = new File("C:\\Games\\src\\main");
-        File srcTest = new File("C:\\Games\\src\\test");
-        File resDrawables  = new File("C:\\Games\\res\\drawables");
-        File resVectors  = new File("C:\\Games\\res\\vectors");
-        File resIcons  = new File("C:\\Games\\res\\icons");
-        if (src.mkdir()) {
-            sbForDirectoriesAndFiles.append("Каталог " + src.getName() + " был создан");
-        } if (res.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + res.getName() + " был создан");
-        } if (savegames.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + savegames.getName() + " был создан");
-        } if (temp.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + temp.getName() + " был создан");
-        } if (srcMain.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + srcMain.getName() + " был создан");
-        } if (srcTest.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + srcTest.getName() + " был создан");
-        } if (resDrawables.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + resDrawables.getName() + " был создан");
-        } if (resVectors.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + resVectors.getName() + " был создан");
-        } if (resIcons.mkdir()) {
-            sbForDirectoriesAndFiles.append(separator).append("Каталог " + resIcons.getName() + " был создан");
+    private static void createUtilsFile(String nameFile) {
+        File utilsJava = new File(path4 + nameFile);
+        try {
+            if (utilsJava.createNewFile()) {
+                sbForDirectoriesAndFiles.append(separator).append("Файл " + utilsJava.getName() + " был создан");
+            }
+        } catch (IOException ex) {
+            ex.getMessage();
         }
-        createSomeFiles();
+    }
+
+    private static void createTextFile(String nameFile) {
+        File text = new File("C:\\Games\\temp\\" + nameFile);
+        try {
+            if (text.createNewFile()) {
+                sbForDirectoriesAndFiles.append(separator).append("Файл " + text.getName() + " был создан");
+            }
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+    }
+
+    private static void writeInfoInFile() {
         String result = sbForDirectoriesAndFiles.toString();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Games\\temp\\text.txt", false))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:" + File.separator + "Games" + File.separator + "temp" + File.separator + "text.txt", false))) {
             bw.write(result);
         } catch (IOException ex) {
             ex.getMessage();
         }
     }
 
-    public static void createSomeFiles() {
-        File main = new File("C:\\Games\\src\\main\\Main.java");
-        File utils = new File("C:\\Games\\src\\main\\Utils.java");
-        File temp = new File("C:\\Games\\temp\\text.txt");
-        try {
-            if (main.createNewFile()) {
-                sbForDirectoriesAndFiles.append(separator).append("Файл " + main.getName() + " был создан");
-            }
-            if (utils.createNewFile()) {
-                sbForDirectoriesAndFiles.append(separator).append("Файл " + utils.getName() + " был создан");
-            }
-            if (temp.createNewFile()) {
-                sbForDirectoriesAndFiles.append(separator).append("Файл " + temp.getName() + " был создан");
-            }
-        } catch (IOException ex) {
-            ex.getMessage();
-        }
-    }
 }
+
